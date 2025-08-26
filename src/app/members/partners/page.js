@@ -26,7 +26,7 @@ const partners = [
 
 export default function Partners() {
   return (
-    <section className="bg-[#1A3B2D] py-20 px-6 md:px-20">
+    <section className="bg-white py-20 px-6 md:px-20">
       <div className="max-w-6xl mx-auto text-center">
         {/* Heading */}
         <motion.h2
@@ -34,12 +34,12 @@ export default function Partners() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold text-white mb-6"
+          className="text-4xl md:text-5xl font-bold text-green-900 mb-6"
         >
           Our Trusted Partners
         </motion.h2>
 
-        <p className="text-gray-300 max-w-3xl mx-auto mb-14 text-lg">
+        <p className="text-gray-600 max-w-3xl mx-auto mb-14 text-lg">
           We collaborate with Pakistan’s top Asset Management Companies to ensure transparency, 
           trust, and growth opportunities for investors.
         </p>
@@ -53,7 +53,7 @@ export default function Partners() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.15 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition"
+              className="bg-gray-50 border-l-4 border-green-700 rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition"
             >
               {/* Image */}
               <div className="h-32 w-full overflow-hidden">
@@ -66,7 +66,7 @@ export default function Partners() {
 
               {/* Content */}
               <div className="p-5 text-left">
-                <h3 className="text-lg font-semibold text-[#1A3B2D]">
+                <h3 className="text-lg font-semibold text-green-900">
                   {partner.name}
                 </h3>
                 <p className="text-gray-600 text-sm mt-2">

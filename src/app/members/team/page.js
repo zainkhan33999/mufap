@@ -1,5 +1,4 @@
 "use client";
-import Navbar from "@/components/ui/Navbar";
 import { motion } from "framer-motion";
 
 const team = [
@@ -27,9 +26,7 @@ const team = [
 
 export default function Team() {
   return (
-    <>
-   
-    <section className="bg-[#1A3B2D] h-screen py-20 px-6 md:px-20">
+    <section className="bg-white py-20 px-6 md:px-20">
       <div className="max-w-6xl mx-auto text-center">
         {/* Heading */}
         <motion.h2
@@ -37,12 +34,12 @@ export default function Team() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold text-white mb-6"
-          >
+          className="text-4xl md:text-5xl font-bold text-green-900 mb-6"
+        >
           Meet Our Team
         </motion.h2>
 
-        <p className="text-gray-300 max-w-3xl mx-auto mb-14 text-lg">
+        <p className="text-gray-600 max-w-3xl mx-auto mb-14 text-lg">
           MUFAP is powered by experienced professionals dedicated to building 
           a transparent, ethical, and thriving mutual fund industry in Pakistan.
         </p>
@@ -56,10 +53,10 @@ export default function Team() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="flex flex-col items-center text-center"
+              className="flex flex-col items-center text-center bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-md hover:shadow-xl transition"
             >
               {/* Profile Image */}
-              <div className="w-28 h-28 rounded-full overflow-hidden border-2 border-white/40 shadow-md hover:shadow-xl transition">
+              <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-green-700 shadow-md hover:shadow-lg transition">
                 <img
                   src={member.image}
                   alt={member.name}
@@ -68,15 +65,14 @@ export default function Team() {
               </div>
 
               {/* Name & Role */}
-              <h3 className="mt-4 text-lg font-semibold text-white">
+              <h3 className="mt-4 text-lg font-semibold text-green-900">
                 {member.name}
               </h3>
-              <p className="text-sm text-gray-300 mt-1">{member.role}</p>
+              <p className="text-sm text-gray-600 mt-1">{member.role}</p>
             </motion.div>
           ))}
         </div>
       </div>
     </section>
-              </>
   );
 }
