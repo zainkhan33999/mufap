@@ -2,7 +2,7 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-gray-200">
+    <footer className="bg-white border-t border-gray-400">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
         
         {/* Brand */}
@@ -36,7 +36,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-100 py-4 text-center text-xs text-gray-500">
+      <div className="border-t border-gray-100 py-4 text-center  bg-[#1A3B2D] text-xs text-white  ">
         © {new Date().getFullYear()} MUFAP. All rights reserved.
       </div>
     </footer>
