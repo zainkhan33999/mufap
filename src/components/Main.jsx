@@ -1,7 +1,7 @@
 "use client"
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
-import main1 from "../assets/main1.avif"
+import main1 from "../assets/main.jpg"
 import main2 from "../assets/main2.avif"
 import main3 from "../assets/main3.avif"
 import { motion, AnimatePresence } from 'framer-motion'
@@ -85,6 +85,7 @@ const Main = () => {
             fill
             className="object-cover brightness-50"
             alt={slides[currentIndex].alt}
+
             priority
           />
         </motion.div>
@@ -130,7 +131,7 @@ const Main = () => {
     </div>  
 
             <section>
-            <div className="relative z-30 grid grid-cols-5 bg-[#1A3B2D] text-white text-center">
+            <div className="relative z-30  bg-[#1A3B2D] md:grid md:grid-cols-5 flex flex-col text-white text-center">
   {["Mutual Fund", "Voluntary Pension Schemes", "Exchange Traded Funds", "NAVs", "Financial Calculator"].map((item, idx) => (
     <button
       key={idx}
