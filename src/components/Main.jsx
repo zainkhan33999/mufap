@@ -10,7 +10,7 @@ const Main = () => {
   const slides = [
     {
       image: main1,
-      alt: "Luxury hotel room",
+      alt: "graph",
       heading: "Mutual Funds Association Of Pakistan",
       subheading: "Welcome To"
     },
@@ -26,7 +26,6 @@ const Main = () => {
       heading: "Trusted By The Financial Industry",
       subheading: "Building Confidence Together"
     }
-    
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -49,102 +48,102 @@ const Main = () => {
   }, [slides.length]);
 
   const textVariants = {
-    enter: (direction) => {
-      return {
-        y: direction > 0 ? -50 : 50,
-        opacity: 0
-      };
-    },
+    enter: (direction) => ({
+      y: direction > 0 ? -50 : 50,
+      opacity: 0
+    }),
     center: {
       y: 0,
       opacity: 1
     },
-    exit: (direction) => {
-      return {
-        y: direction < 0 ? 50 : -50,
-        opacity: 0
-      };
-    }
+    exit: (direction) => ({
+      y: direction < 0 ? 50 : -50,
+      opacity: 0
+    })
   };
 
   return (
     <>
-    <div className="relative w-full h-screen overflow-hidden font-lora">
-      {/* Background images with fade animation */}
-      <AnimatePresence custom={direction}>
-        <motion.div
-          key={currentIndex}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1 }}
-          className="absolute inset-0"
-        >
-          <Image 
-            src={slides[currentIndex].image} 
-            fill
-            className="object-cover brightness-50"
-            alt={slides[currentIndex].alt}
-
-            priority
-          />
-        </motion.div>
-      </AnimatePresence>
-      
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/40"></div>
-      
-      {/* Text content with coordinated animation */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <AnimatePresence custom={direction} mode="wait">
+      <div className="relative w-full h-screen overflow-hidden font-lora">
+        {/* Background images with fade animation */}
+        <AnimatePresence>
           <motion.div
             key={currentIndex}
-            custom={direction}
-            variants={textVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{ duration: 0.8 }}
-            className="flex flex-col gap-2 items-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            className="absolute inset-0"
           >
-            <motion.section>
-              <p className='text-white opacity-89 text-center'>
-                {slides[currentIndex].subheading}
-              </p>
-            </motion.section>
-            <motion.section>
-              <h1 className="text-white text-3xl md:text-4xl font-bold text-center px-4">
-                {slides[currentIndex].heading}
-              </h1>
-            </motion.section>
-            <section className='text-[#f5f5f5] flex gap-5 mt-5 cursor-pointer'>
-              <button onClick={() => handlebuttonClick("about")} className='cursor-pointer border-2 border-primary bg-green-700 hover:border-white transition-all duration-300 rounded pt-2 pb-2 pl-5 pr-5'>
-                About Us
-              </button>
-              <button onClick={() => handlebuttonClick("tarrif")} className='cursor-pointer border-2 border-primary bg-green-700  hover:border-white transition-all duration-300 rounded pt-2 pb-2 pl-5 pr-5'>
-                Contact Us
-              </button>
-            </section>
+            <Image 
+              src={slides[currentIndex].image} 
+              fill
+              className="object-cover brightness-50"
+              alt={slides[currentIndex].alt}
+              priority
+            />
           </motion.div>
         </AnimatePresence>
-      </div>
-    </div>  
+        
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/40"></div>
+        
+        {/* Text content with coordinated animation */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <AnimatePresence custom={direction} mode="wait">
+            <motion.div
+              key={currentIndex}
+              custom={direction}
+              variants={textVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.8 }}
+              className="flex flex-col gap-2 items-center"
+            >
+              <motion.section>
+                <p className='text-white opacity-90 text-center'>
+                  {slides[currentIndex].subheading}
+                </p>
+              </motion.section>
+              <motion.section>
+                <h1 className="text-white text-3xl md:text-4xl font-bold text-center px-4">
+                  {slides[currentIndex].heading}
+                </h1>
+              </motion.section>
+              <section className='text-[#f5f5f5] flex gap-5 mt-5 cursor-pointer'>
+                <button 
+                  onClick={() => handlebuttonClick("about")} 
+                  className='cursor-pointer border-2 border-primary bg-green-700 hover:border-white transition-all duration-300 rounded pt-2 pb-2 pl-5 pr-5'
+                >
+                  About Us
+                </button>
+                <button 
+                  onClick={() => handlebuttonClick("tarrif")} 
+                  className='cursor-pointer border-2 border-primary bg-green-700 hover:border-white transition-all duration-300 rounded pt-2 pb-2 pl-5 pr-5'
+                >
+                  Contact Us
+                </button>
+              </section>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>  
 
-            <section>
-            <div className="relative z-30  bg-[#1A3B2D] md:grid md:grid-cols-5 flex flex-col text-white text-center">
-  {["Mutual Fund", "Voluntary Pension Schemes", "Exchange Traded Funds", "NAVs", "Financial Calculator"].map((item, idx) => (
-    <button
-      key={idx}
-      className="py-3 hover:bg-green-700 transition-colors font-medium"
-    >
-      {item}
-    </button>
-  ))}
-</div>
-
-
-            </section>
-            </>
+      {/* Bottom navigation buttons */}
+      <section>
+        <div className="relative z-30 bg-[#1A3B2D] md:grid md:grid-cols-5 flex flex-col text-white text-center">
+          {["Mutual Fund", "Voluntary Pension Schemes", "Exchange Traded Funds", "NAVs", "Financial Calculator"].map((item, idx) => (
+            <button
+              key={idx}
+              className="py-3 hover:bg-green-700 transition-colors font-medium"
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+      </section>
+    </>
   )
 }
 

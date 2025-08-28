@@ -1,27 +1,29 @@
 "use client";
 import { motion } from "framer-motion";
+import team1 from "../../../../public/team1.jpg";
+import Image from "next/image";
+const teams = [
+  {
+    name: "Mr. Shiraz Ahmed",
+    role: "Senior Research Analyst",
+    image: team1, 
+  },
+    {
+    name: "Mr. Shiraz Ahmed",
+    role: "Senior Research Analyst",
+    image: team1, 
+  },
+  {
+    name: "Mr. Shiraz Ahmed",
+    role: "Senior Research Analyst",
+    image: team1, 
+  },  
+  {
+    name: "Mr. Shiraz Ahmed",
+    role: "Senior Research Analyst",
+    image: team1, 
+  }, 
 
-const team = [
-  {
-    name: "Ahmed Khan",
-    role: "Chief Executive Officer",
-    image: "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  },
-  {
-    name: "Bilal Ahmed",
-    role: "Chief Financial Officer",
-    image: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  },
-  {
-    name: "Usman Ali",
-    role: "Head of Operations",
-    image: "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  },
-  {
-    name: "Faisal Khan",
-    role: "Head of Compliance",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  },
 ];
 
 export default function Team() {
@@ -45,8 +47,8 @@ export default function Team() {
         </p>
 
         {/* Team Members Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
-          {team.map((member, idx) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          {teams.map((member, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, scale: 0.9 }}
@@ -57,7 +59,8 @@ export default function Team() {
             >
               {/* Profile Image */}
               <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-green-700 shadow-md hover:shadow-lg transition">
-                <img
+                <Image
+                  priority
                   src={member.image}
                   alt={member.name}
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-300"
