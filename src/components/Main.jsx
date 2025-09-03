@@ -5,6 +5,7 @@ import main1 from "../assets/main.jpg"
 import main2 from "../assets/main2.avif"
 import main3 from "../assets/main3.avif"
 import { motion, AnimatePresence } from 'framer-motion'
+import { FaChartLine, FaPiggyBank, FaExchangeAlt, FaChartBar, FaCalculator } from 'react-icons/fa'
 
 const Main = () => {
   const slides = [
@@ -30,6 +31,8 @@ const Main = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [activeNav, setActiveNav] = useState(null);
+  const [tappedItem, setTappedItem] = useState(null);
 
   const handlebuttonClick = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -61,6 +64,29 @@ const Main = () => {
       opacity: 0
     })
   };
+
+  const navItems = [
+    { 
+      name: "Mutual Fund", 
+      icon: <FaChartLine size={18} />,
+    },
+    { 
+      name: "Voluntary Pension", 
+      icon: <FaPiggyBank size={18} />,
+    },
+    { 
+      name: "ETFs", 
+      icon: <FaExchangeAlt size={18} />,
+    },
+    { 
+      name: "NAVs", 
+      icon: <FaChartBar size={18} />,
+    },
+    { 
+      name: "Calculator", 
+      icon: <FaCalculator size={18} />,
+    }
+  ];
 
   return (
     <>
@@ -102,46 +128,131 @@ const Main = () => {
               className="flex flex-col gap-2 items-center"
             >
               <motion.section>
-                <p className='text-white opacity-90 text-center'>
+                <p className='text-white opacity-90 text-center text-lg md:text-xl mb-2'>
                   {slides[currentIndex].subheading}
                 </p>
               </motion.section>
               <motion.section>
-                <h1 className="text-white text-3xl md:text-4xl font-bold text-center px-4">
+                <h1 className="text-white text-3xl md:text-5xl font-bold text-center px-4 mb-8">
                   {slides[currentIndex].heading}
                 </h1>
               </motion.section>
-              <section className='text-[#f5f5f5] flex gap-5 mt-5 cursor-pointer'>
-                <button 
+              <section className='flex gap-5 mt-5'>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => handlebuttonClick("about")} 
-                  className='cursor-pointer border-2 border-primary bg-green-700 hover:border-white transition-all duration-300 rounded pt-2 pb-2 pl-5 pr-5'
+                  className='px-8 py-3 bg-gradient-to-r from-green-700 to-emerald-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-white/30'
                 >
                   About Us
-                </button>
-                <button 
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => handlebuttonClick("tarrif")} 
-                  className='cursor-pointer border-2 border-primary bg-green-700 hover:border-white transition-all duration-300 rounded pt-2 pb-2 pl-5 pr-5'
+                  className='px-8 py-3 bg-gradient-to-r text-white from-green-700 to-emerald-600 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:bg-white/10'
                 >
                   Contact Us
-                </button>
+                </motion.button>
               </section>
             </motion.div>
           </AnimatePresence>
         </div>
       </div>  
 
-      {/* Bottom navigation buttons */}
-      <section>
-        <div className="relative z-30 bg-[#1A3B2D] md:grid md:grid-cols-5 flex flex-col text-white text-center">
-          {["Mutual Fund", "Voluntary Pension Schemes", "Exchange Traded Funds", "NAVs", "Financial Calculator"].map((item, idx) => (
-            <button
-              key={idx}
-              className="py-3 hover:bg-green-700 transition-colors font-medium"
-            >
-              {item}
-            </button>
-          ))}
+      {/* Modern Navigation Design */}
+      <section className="relative z-30 bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex justify-evenly items-center space-x-8 py-4">
+            {navItems.map((item, idx) => (
+              <motion.div 
+                key={idx}
+                className="relative"
+                onMouseEnter={() => setActiveNav(idx)}
+                onMouseLeave={() => setActiveNav(null)}
+              >
+                <motion.button
+                  className={`flex flex-col items-center px-4 py-3 transition-all duration-300 ${
+                    activeNav === idx 
+                      ? 'text-emerald-600' 
+                      : 'text-gray-600 hover:text-emerald-500'
+                  }`}
+                  whileHover={{ y: -2 }}
+                >
+                  <div className={`p-2 rounded-full mb-2 transition-colors ${
+                    activeNav === idx ? 'bg-emerald-100' : 'bg-gray-100'
+                  }`}>
+                    {item.icon}
+                  </div>
+                  <span className="font-medium text-sm whitespace-nowrap">{item.name}</span>
+                </motion.button>
+                
+                {/* Active indicator */}
+                <motion.div 
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-500 rounded-full"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: activeNav === idx ? 1 : 0 }}
+                  transition={{ duration: 0.2 }}
+                />
+              </motion.div>
+            ))}
+          </div>
+          
+          {/* Enhanced Mobile Navigation - Always Visible */}
+          <div className="md:hidden py-3">
+            <div className="flex justify-between px-1 w-full">
+              {navItems.map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  className="flex flex-col items-center px-1 flex-1 relative"
+                  whileTap={{ scale: 0.95 }}
+                  onTapStart={() => setTappedItem(idx)}
+                  onTap={() => setTappedItem(null)}
+                  onTapCancel={() => setTappedItem(null)}
+                >
+                  <motion.button
+                    className={`flex flex-col items-center w-full py-2 rounded-lg ${
+                      tappedItem === idx ? 'bg-emerald-50' : 'bg-transparent'
+                    }`}
+                  >
+                    <motion.div 
+                      className={`p-2 rounded-full mb-1 ${
+                        tappedItem === idx ? 'bg-emerald-100 text-emerald-600' : 'bg-gray-100 text-gray-600'
+                      }`}
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    >
+                      {item.icon}
+                    </motion.div>
+                    <span className="text-xs font-medium text-gray-700 whitespace-nowrap text-center px-1">
+                      {item.name.split(' ')[0]}
+                    </span>
+                  </motion.button>
+                  
+                  {/* Active indicator animation similar to desktop */}
+                  <motion.div 
+                    className="absolute bottom-0 left-2 right-2 h-1 bg-emerald-500 rounded-full"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: tappedItem === idx ? 1 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Horizontal separator */}
+            <motion.div 
+              className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-full mt-2"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+            />
+          </div>
         </div>
+        
+        {/* Subtle separator line */}
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent w-full"></div>
       </section>
     </>
   )
