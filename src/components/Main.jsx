@@ -251,7 +251,7 @@ const Main = () => {
           </div>
         </div>
         
-        {/* Subtle separator line */}
+        {/* Subtle separator lineesS */}
         <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent w-full"></div>
       </section>
     </>
