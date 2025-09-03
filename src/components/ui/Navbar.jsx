@@ -47,40 +47,49 @@ const Navbar = () => {
     <nav className="bg-[#1A3B2D] lg:bg-white shadow-sm border-b relative">
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
         {/* Logo */}
-        <div className="w-[170px] lg:w-[200px] ">
-
-        <Link href="/" className="relative font-bold  z-50 bg-[#1A3B2D] text-[#1A3B2D]">
-          <Image src={logo} alt="logo" className="object-cover bg-[#1A3B2D] p-2" priority />
-        </Link>
+        <div className="w-[170px] lg:w-[200px]">
+          <Link href="/" className="relative font-bold z-50">
+            <Image 
+              src={logo} 
+              alt="MUFAP Logo" 
+              className="object-cover bg-[#1A3B2D] p-2 lg:p-3  " 
+              priority 
+            />
+          </Link>
         </div>
 
-        {/* Nav Links */}
-        <ul className="hidden md:flex space-x-8 relative">
+        {/* Desktop Nav Links - Enhanced for Professional Look */}
+        <ul className="hidden md:flex space-x-1 relative">
           {menus.map((menu, idx) => (
             <li
               key={idx}
-              className="relative"
-              onMouseEnter={() => setOpenMenu(menu.title)}   // open when hovered
-              onClick={() => setOpenMenu(menu.title)}       // also open if clicked
+              className="relative group"
+              onMouseEnter={() => setOpenMenu(menu.title)}
+              onMouseLeave={() => setOpenMenu(null)}
             >
-              {/* Parent link */}
-              <div
-                className="hover:text-[#1A3B2D] transition"
-              >
+              {/* Parent link with improved styling */}
+              <div className="px-4 py-2 text-gray-700 hover:text-[#1A3B2D] font-medium transition-colors duration-200 cursor-pointer flex items-center">
                 {menu.title}
+                {/* Chevron indicator */}
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className={`h-4 w-4 ml-1 transition-transform duration-200 ${openMenu === menu.title ? 'rotate-180' : ''}`} 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
               </div>
 
-              {/* Dropdown */}
+              {/* Enhanced Dropdown with subtle animation */}
               {openMenu === menu.title && (
-                <div
-                  className="absolute top-10 left-0 bg-white shadow-lg border rounded-md w-64 py-3 z-50"
-                  onMouseLeave={() => setOpenMenu(null)} // <-- remove this if you want it to *stay open*
-                >
+                <div className="absolute top-full left-0 bg-white shadow-lg border border-gray-100 rounded-md w-56 py-2 z-50 transition-opacity duration-200">
                   {menu.links.map((link, i) => (
                     <Link
                       key={i}
                       href={link.route}
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                      className="block px-4 py-2.5 text-gray-700 hover:bg-emerald-50 hover:text-[#1A3B2D] transition-colors duration-150 text-sm"
                     >
                       {link.name}
                     </Link>
@@ -92,11 +101,12 @@ const Navbar = () => {
         </ul>
 
         {/* Right Buttons */}
-        <div className="hidden md:flex items-center space-x-4">
-          <button className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-[#1A3B2D]">
+        <div className="hidden md:flex items-center space-x-3">
+          <button className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-md font-medium transition-colors duration-200 shadow-sm hover:shadow-md">
             Digital Account Opening
           </button>
         </div>
+
 
         {/* Mobile Menu Toggle */}
         <button

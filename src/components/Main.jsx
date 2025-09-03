@@ -128,21 +128,21 @@ const Main = () => {
               className="flex flex-col gap-2 items-center"
             >
               <motion.section>
-                <p className='text-white opacity-90 text-center text-lg md:text-xl mb-2'>
+                <p className='text-white opacity-90 text-center text-sm sm:text-base md:text-lg lg:text-xl mb-2 px-2'>
                   {slides[currentIndex].subheading}
                 </p>
               </motion.section>
               <motion.section>
-                <h1 className="text-white text-3xl md:text-5xl font-bold text-center px-4 mb-8">
+                <h1 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-center px-4 mb-4 md:mb-6 lg:mb-8 leading-tight">
                   {slides[currentIndex].heading}
                 </h1>
               </motion.section>
-              <section className='flex gap-5 mt-5'>
+              <section className='flex gap-3 sm:gap-4 md:gap-5 mt-4 md:mt-5'>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handlebuttonClick("about")} 
-                  className='px-8 py-3 bg-gradient-to-r from-green-700 to-emerald-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-white/30'
+                  className='px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 bg-gradient-to-r from-green-700 to-emerald-600 text-white font-semibold rounded-lg text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-white/30'
                 >
                   About Us
                 </motion.button>
@@ -150,7 +150,7 @@ const Main = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handlebuttonClick("tarrif")} 
-                  className='px-8 py-3 bg-gradient-to-r text-white from-green-700 to-emerald-600 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:bg-white/10'
+                  className='px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 bg-gradient-to-r text-white from-green-700 to-emerald-600 font-semibold rounded-lg text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:bg-white/10'
                 >
                   Contact Us
                 </motion.button>
